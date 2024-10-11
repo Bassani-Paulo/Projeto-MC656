@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2n3jlfnk0h2i"]
+[gd_scene load_steps=4 format=3 uid="uid://b2n3jlfnk0h2i"]
 
 [ext_resource type="Texture2D" uid="uid://br6fpcg8bda8q" path="res://assets/sprites/canudo.png" id="2_l424g"]
 
@@ -16,8 +16,17 @@ func _process(delta: float) -> void:
 	pass
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mknsi"]
+size = Vector2(798, 722)
+
 [node name="Lixo" type="Node2D"]
 script = SubResource("GDScript_7ugpd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_l424g")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -18)
+shape = SubResource("RectangleShape2D_mknsi")
