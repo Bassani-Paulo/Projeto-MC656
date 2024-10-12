@@ -1,0 +1,29 @@
+
+name: Godot CI
+
+
+on:
+
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  gut-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Download Godot
+        run: |
+          wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip -O godot.zip
+          unzip godot.zip -d godot
+          chmod +x godot/Godot_v4.3-stable_linux.x86_64
+      - name: Run GUT Tests
+        run: |
+          cd Jogo
+          ../godot/Godot_v4.3-stable_linux.x86_64 --headless --no-window -s addons/gut/gut_cmdln.gd -d --path "$PWD" -gdir=res://tests > gut_test_results.log -gexit
+          cd ..
