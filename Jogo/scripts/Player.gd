@@ -33,3 +33,10 @@ func _process(delta: float) -> void:
 	position.y = clamp(position.y, tartaruga_height/2, visible_rect.size.y-tartaruga_height/2)
 	
 	pass
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.get_parent().name == "Lixo":
+		get_parent().take_damage()
+		area.get_parent().queue_free()
+	pass
