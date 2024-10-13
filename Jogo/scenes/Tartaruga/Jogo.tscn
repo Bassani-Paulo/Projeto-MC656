@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/Jogo da Tartaruga.gd" id="1_1u5cp"]
 [ext_resource type="Texture2D" uid="uid://tpf6ahgoeswp" path="res://assets/sprites/sea background.png" id="2_a6eal"]
-[ext_resource type="PackedScene" uid="uid://bocxcaxg1cxr1" path="res://scenes/Tartaruga/Player.tscn" id="3_dbeim"]
+[ext_resource type="PackedScene" uid="uid://bocxcaxg1cxr1" path="res://scenes/Tartaruga/Player.tscn" id="2_g4ppw"]
 
 [node name="Jogo" type="Node2D"]
 script = ExtResource("1_1u5cp")
+
+[node name="Player" parent="." instance=ExtResource("2_g4ppw")]
 
 [node name="Backgorund" type="Node2D" parent="."]
 position = Vector2(400, 280)
