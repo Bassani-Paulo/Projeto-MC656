@@ -1,8 +1,6 @@
 extends Node2D
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
-static var test_pressed_right
-static var test_pressed_left
 var tartaruga_height
 var tartaruga_width
 var visible_rect
@@ -22,9 +20,9 @@ func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO # The player's movement vector.
 	
 	##Player Movement change
-	if Input.is_action_pressed("move_right") or test_pressed_right: 
+	if Input.is_action_pressed("move_right"): 
 		velocity.x += 1
-	if Input.is_action_pressed("move_left") or test_pressed_left:
+	if Input.is_action_pressed("move_left"):
 		velocity.x -= 1
 	
 	if velocity.length() > 0 :
