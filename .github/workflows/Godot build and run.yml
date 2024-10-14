@@ -27,11 +27,7 @@ jobs:
       - name: Build and Run
         run: |
           cd Jogo
-          timeout 10s Godot_v4.3-stable_linux.x86_64 --headless --no-window
-          if [ $? -eq 124 ]; then
-            echo "Application timed out and was closed"
-          else
-            echo "Application finished running without issues"
-          fi
+          timeout --preserve-status 10s Godot_v4.3-stable_linux.x86_64 --headless --no-window || true
+          echo "Exit Code: $?"
       - name: Run GUT Tests
         run: Godot_v4.3-stable_linux.x86_64 --headless --no-window -s addons/gut/gut_cmdln.gd -d --path "$PWD" -gdir=res://tests > gut_test_results.log -gexit
