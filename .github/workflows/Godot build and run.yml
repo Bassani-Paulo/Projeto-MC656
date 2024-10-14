@@ -27,12 +27,12 @@ jobs:
       - name: Build and Run
         run: |
           cd Jogo
-          echo "------------------------------------------FIRST---------------------------------------------------"
+          echo "------------------------------------------LOAD----------------------------------------------------"
           timeout --preserve-status 10s Godot_v4.3-stable_linux.x86_64 --headless --no-window project.godot || true
-          echo "------------------------------------------SECOND--------------------------------------------------"
-          timeout --preserve-status 10s Godot_v4.3-stable_linux.x86_64 --headless --no-window project.godot || true
-          echo "-------------------------------------------RUN----------------------------------------------------"
-          timeout --preserve-status 10s Godot_v4.3-stable_linux.x86_64 --headless --no-window || true
+          echo "-----------------------------------------RELOAD---------------------------------------------------"
+          timeout --preserve-status 5s Godot_v4.3-stable_linux.x86_64 --headless --no-window project.godot || true
+          echo "------------------------------------------RUN-----------------------------------------------------"
+          timeout --preserve-status 5s Godot_v4.3-stable_linux.x86_64 --headless --no-window || true
       - name: Run GUT Tests
         run: |
           cd Jogo
