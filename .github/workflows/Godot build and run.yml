@@ -22,8 +22,11 @@ jobs:
           wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip -O godot.zip
           unzip godot.zip -d godot
           chmod +x godot/Godot_v4.3-stable_linux.x86_64
-      - name: Run GUT Tests
+      - name: Add Godot to PATH
+        run: echo "${{ github.workspace }}/godot" >> $GITHUB_PATH
+      - name: Build and Run
         run: |
           cd Jogo
-          ../godot/Godot_v4.3-stable_linux.x86_64 --headless --no-window -s addons/gut/gut_cmdln.gd -d --path "$PWD" -gdir=res://tests > gut_test_results.log -gexit
-          cd ..
+          Godot_v4.3-stable_linux.x86_64 --headless --no-window -d
+      - name: Run GUT Tests
+        run: Godot_v4.3-stable_linux.x86_64 --headless --no-window -s addons/gut/gut_cmdln.gd -d --path "$PWD" -gdir=res://tests > gut_test_results.log -gexit
