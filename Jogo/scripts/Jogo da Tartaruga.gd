@@ -26,5 +26,5 @@ func update_hp_label():
 	$Hp_label.text = "HP: " + str(player_hp) + "/" + str(max_hp)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta) -> void:
 	pass

@@ -1,8 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba0kr0ad54niu"]
+[gd_scene load_steps=5 format=3 uid="uid://ba0kr0ad54niu"]
 
 [ext_resource type="Script" path="res://scripts/Jogo da Tartaruga.gd" id="1_1u5cp"]
 [ext_resource type="Texture2D" uid="uid://tpf6ahgoeswp" path="res://assets/sprites/sea background.png" id="2_a6eal"]
 [ext_resource type="PackedScene" uid="uid://bocxcaxg1cxr1" path="res://scenes/Tartaruga/Player.tscn" id="2_g4ppw"]
+
+[sub_resource type="GDScript" id="GDScript_thmbk"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="Jogo" type="Node2D"]
 script = ExtResource("1_1u5cp")
@@ -11,6 +25,7 @@ script = ExtResource("1_1u5cp")
 
 [node name="Backgorund" type="Node2D" parent="."]
 position = Vector2(400, 280)
+script = SubResource("GDScript_thmbk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Backgorund"]
 texture = ExtResource("2_a6eal")
