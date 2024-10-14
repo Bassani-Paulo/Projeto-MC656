@@ -36,4 +36,4 @@ jobs:
       - name: Run GUT Tests
         run: |
           cd Jogo
-          Godot_v4.3-stable_linux.x86_64 --headless --no-window -s addons/gut/gut_cmdln.gd -d --path "$PWD" -gdir=res://tests -gexit
+          Godot_v4.3-stable_linux.x86_64 --headless -s addons/gut/gut_cmdln.gd -d --path "$PWD" -gdir=res://tests -gexit
