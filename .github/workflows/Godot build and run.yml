@@ -28,6 +28,6 @@ jobs:
         run: |
           cd Jogo
           timeout 10s Godot_v4.3-stable_linux.x86_64 --headless --no-window
-          shell: bash
+        shell: bash
       - name: Run GUT Tests
         run: Godot_v4.3-stable_linux.x86_64 --headless --no-window -s addons/gut/gut_cmdln.gd -d --path "$PWD" -gdir=res://tests > gut_test_results.log -gexit
