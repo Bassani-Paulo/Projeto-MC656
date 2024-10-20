@@ -1,9 +1,6 @@
-
 name: Godot CI
 
-
 on:
-
   push:
     branches: [ "main" ]
   pull_request:
@@ -29,7 +26,7 @@ jobs:
           cd Jogo
           echo "------------------------------------------LOAD----------------------------------------------------"
           timeout --preserve-status 10s Godot_v4.3-stable_linux.x86_64 --headless --no-window project.godot || true
-          echo "-----------------------------------------RELOAD---------------------------------------------------"
+          echo "-----------------------------------------RELOAD---------------------------------------------------" #necessário para carregar os assets que não vão de primeira
           timeout --preserve-status 5s Godot_v4.3-stable_linux.x86_64 --headless --no-window project.godot || true
           echo "------------------------------------------RUN-----------------------------------------------------"
           timeout --preserve-status 5s Godot_v4.3-stable_linux.x86_64 --headless --no-window || true
