@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccccvmgjt283y"]
+
+[ext_resource type="Script" path="res://scripts/Abelha/player.gd" id="1_n8x3i"]
+[ext_resource type="Texture2D" uid="uid://bg15nn2f43lto" path="res://assets/sprites/bee.png" id="2_3a2pb"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_n8x3i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3a2pb")
