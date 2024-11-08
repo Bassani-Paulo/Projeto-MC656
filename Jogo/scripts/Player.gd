@@ -1,14 +1,15 @@
 extends Node2D
 
-@export var speed = 400 # How fast the player will move (pixels/sec).
+@export var speed = 300 # How fast the player will move (pixels/sec).
 var tartaruga_height
 var tartaruga_width
 var visible_rect
+var escala = 0.156
 
 # Called when the player enters the scene for the first time.
 func _ready() -> void:
-	tartaruga_height = get_node("Sprite2D").texture.get_height()
-	tartaruga_width = get_node("Sprite2D").texture.get_width()
+	tartaruga_height = get_node("Area2D/Sprite2D").texture.get_height() * escala
+	tartaruga_width = get_node("Area2D/Sprite2D").texture.get_width() * escala
 	visible_rect = get_viewport().get_visible_rect()
 	
 	position.x = visible_rect.size.x/2
@@ -17,6 +18,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#print(get_parent().get_parent().get_child(3).name)
 	var velocity = Vector2.ZERO # The player's movement vector.
 	
 	##Player Movement change
@@ -29,7 +31,14 @@ func _process(delta: float) -> void:
 		velocity *= speed
 	
 	position += velocity * delta
-	position.x = clamp(position.x, tartaruga_width/2,visible_rect.size.x-tartaruga_width/2)
-	position.y = clamp(position.y, tartaruga_height/2, visible_rect.size.y-tartaruga_height/2)
-	
+	position.x = clamp(position.x, tartaruga_width/2 ,visible_rect.size.x-tartaruga_width/2)
+	pass
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.name == "Area2D":
+		Global.spawn_rate = 1
+		get_parent().get_node("Timer").update_wait_time(area.get_parent())
+		
+		get_parent().take_damage()
+		area.get_parent().queue_free()
 	pass
