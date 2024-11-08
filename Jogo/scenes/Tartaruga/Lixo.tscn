@@ -1,48 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2n3jlfnk0h2i"]
 
+[ext_resource type="Script" path="res://scripts/lixo.gd" id="1_7lt4a"]
 [ext_resource type="Texture2D" uid="uid://br6fpcg8bda8q" path="res://assets/sprites/canudo.png" id="2_l424g"]
-
-[sub_resource type="GDScript" id="GDScript_u6nm1"]
-script/source = "extends Node2D
-
-@export var speed = 100 # How fast the player will move (pixels/sec).
-var canudo_height
-var canudo_width
-var visible_rect
-var random_float
-
-# Called when the player enters the scene for the first time.
-func _ready() -> void:
-	canudo_height = get_node(\"Sprite2D\").texture.get_height()*.0625 # must divide by scale.x here
-	canudo_width = get_node(\"Sprite2D\").texture.get_width()*.0625 # must divide by scale.y here
-	print(canudo_height)
-	print(canudo_width)
-	visible_rect = get_viewport().get_visible_rect()
-	
-	
-	position.x = randf_range(canudo_width/2, visible_rect.size.x-canudo_width/2)
-	position.y = -canudo_height/2
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var velocity = Vector2.ZERO # The player's movement vector.
-	
-	##Player Movement change
-	velocity.y += speed
-	position += velocity * delta
-	
-	if position.y >= visible_rect.size.y + canudo_height/2:
-		_ready()
-	pass
-	
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mknsi"]
 size = Vector2(192, 536)
 
 [node name="Lixo" type="Node2D"]
-script = SubResource("GDScript_u6nm1")
+script = ExtResource("1_7lt4a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.125, 0.125)
@@ -52,8 +17,8 @@ texture = ExtResource("2_l424g")
 position = Vector2(-1, -16)
 scale = Vector2(39.55, 36.05)
 
-[node name="Lixo_area" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lixo_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(0.125, 0.125)
 shape = SubResource("RectangleShape2D_mknsi")

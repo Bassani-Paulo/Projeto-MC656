@@ -32,5 +32,13 @@ func _process(delta: float) -> void:
 	
 	position += velocity * delta
 	position.x = clamp(position.x, tartaruga_width/2 ,visible_rect.size.x-tartaruga_width/2)
-	
+	pass
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.name == "Area2D":
+		Global.spawn_rate = 1
+		get_parent().get_node("Timer").update_wait_time(area.get_parent())
+		
+		get_parent().take_damage()
+		area.get_parent().queue_free()
 	pass
