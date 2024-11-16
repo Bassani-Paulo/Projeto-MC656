@@ -11,6 +11,7 @@ func before_each():
 	add_child(jogo)
 
 func test_move():
+	print(get_viewport().get_visible_rect().size)
 	if get_viewport().get_visible_rect().size != Vector2.ZERO:  #verifica se exite um display. relevante caso seja feito num servidor sem display, não funciona
 		Input.warp_mouse(Vector2(409, 386))
 		await wait_seconds(0.2)
