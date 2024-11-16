@@ -12,7 +12,7 @@ func _ready() -> void:
 		visible_rect_size = get_viewport().get_visible_rect().size
 	
 	position.y = visible_rect_size.y/2
-	position.y = bee_width
+	position.x = bee_width
 	pass # Replace with function body.
 
 
