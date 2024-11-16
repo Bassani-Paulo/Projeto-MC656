@@ -11,18 +11,17 @@ func before_each():
 	add_child(jogo)
 
 func test_move():
-	print(get_viewport().get_visible_rect().size)
-	if get_viewport().get_visible_rect().size != Vector2.ZERO:  #verifica se exite um display. relevante caso seja feito num servidor sem display, não funciona
-		Input.warp_mouse(Vector2(409, 386))
-		await wait_seconds(0.2)
-		assert_eq(int(player.position.y), 386, "Player not following mouse")
-	else:
-		assert_true(true)
+	var mouse_event = InputEventMouseMotion.new()
+	mouse_event.global_position = Vector2(400, 300)
+	mouse_event.relative = Vector2(9, 86)
+	Input.parse_input_event(mouse_event)
+	await wait_seconds(5)
+	assert_eq(int(player.position.y), 386, "Player not following mouse")
 
 func test_out_of_bounds():
-	if get_viewport().get_visible_rect().size != Vector2.ZERO:  #verifica se exite um display. relevante caso seja feito num servidor sem display, não funciona
-		Input.warp_mouse(Vector2(742, -231))
-		await wait_seconds(0.2)
-		assert_gte(int(player.position.x), 0, "Player is out of bounds")
-	else:
-		assert_true(true)
+	var mouse_event = InputEventMouseMotion.new()
+	mouse_event.global_position = Vector2(400, 300)
+	mouse_event.relative = Vector2(342, -531)
+	Input.parse_input_event(mouse_event)
+	await wait_seconds(5)
+	assert_gte(int(player.position.x), 0, "Player is out of bounds")
