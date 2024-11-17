@@ -30,7 +30,7 @@ func test_moves_right():
 func test_out_of_bounds_left():
 	# Simulates holding down the left arrow key for a significant amount of frames
 	Input.action_press("move_left")
-	await wait_seconds(5)
+	await wait_seconds(2)
 	Input.action_release("move_left")
 
 	assert_gt(int(player.position.x), int(0), "Player is out of bounds on the left side.")
@@ -38,7 +38,7 @@ func test_out_of_bounds_left():
 func test_out_of_bounds_right():
 	# Simulates holding down the right arrow key for a significant amount of frames
 	Input.action_press("move_right")
-	await wait_seconds(5)
+	await wait_seconds(2)
 	Input.action_release("move_right")
 
 	assert_lt(int(player.position.x), int(visible_rect_width), "Player is out of bounds on the right side.")
