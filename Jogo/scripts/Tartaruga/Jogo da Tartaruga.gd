@@ -16,13 +16,24 @@ func _ready() -> void:
 
 # Function to handle taking damage
 func take_damage(damage = 1):
+	reduce_health(damage)
+	update_ui()
+
+# Reduce the player's health
+func reduce_health(damage: int) -> void:
 	player_hp -= damage
 	emit_signal("life_changed", player_hp)
-	if player_hp <= 0:
+	if player_hp < 0:
 		player_hp = 0
+
+# Check if the game is over
+func check_game_over() -> void:
+	if player_hp == 0:
 		game_over()
+
+# Update UI elements
+func update_ui() -> void:
 	update_hp_label()
-	pass
 
 # Function to handle the game over condition
 func game_over():
