@@ -7,7 +7,7 @@ var double_jogo
 
 func before_each():
 	double_jogo = double(load("res://scenes/Tartaruga/Jogo.tscn")).instantiate()
-	player = load("res://scenes/Tartaruga/Player.tscn").instantiate()
+	player = double_jogo.get_node("Player")
 	lixo = load("res://scenes/Tartaruga/Lixo.tscn").instantiate()
 
 	add_child(double_jogo)
