@@ -12,25 +12,25 @@ func _process(_delta) -> void:
 
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/Tartaruga/Jogo.tscn")
+	SceneManager.change_scene("res://scenes/Tartaruga/Jogo.tscn")
 	pass # Replace with function body.
 
 
 func _on_jogar_abelha_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/Abelha/Jogo.tscn")
+	SceneManager.change_scene("res://scenes/Abelha/Jogo.tscn")
 	pass # Replace with function body.
 
 
 func _on_jogar_reciclagem_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/Reciclagem/Jogo.tscn")
+	SceneManager.change_scene("res://scenes/Reciclagem/Jogo.tscn")
 	pass # Replace with function body.
 
 
 func _on_opções_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/ui/Options.tscn")
+	SceneManager.change_scene("res://scenes/ui/Options.tscn")
 	pass # Replace with function body.
 
 
 func _on_sair_pressed() -> void:
-	get_tree().quit()
+	SceneManager.exit_game()
 	pass # Replace with function body.
