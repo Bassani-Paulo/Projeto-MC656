@@ -38,6 +38,7 @@ func update_ui() -> void:
 
 # Function to handle the game over condition
 func game_over():
+	get_tree().change_scene_to_file("res://scenes/Tartaruga/GameOver.tscn")
 	pass
 
 # Utility function to update the HP Label (use signal or direct reference to HUD)
