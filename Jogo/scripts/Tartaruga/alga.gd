@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var speed = 100 # How fast the canudo will fall (pixels/sec).
-var canudo_height
-var canudo_width
+var alga_height
+var alga_width
 var visible_rect
 var scale_x
 var scale_y
@@ -19,15 +19,15 @@ func _ready() -> void:
 func inicializar_dimensões() -> void:
 	scale_x = get_node("Sprite2D").scale.x
 	scale_y = get_node("Sprite2D").scale.y
-	canudo_height = get_node("Sprite2D").texture.get_height() * scale_y
-	canudo_width = get_node("Sprite2D").texture.get_width() * scale_x
+	alga_height = get_node("Sprite2D").texture.get_height() * scale_y
+	alga_width = get_node("Sprite2D").texture.get_width() * scale_x
 	visible_rect = get_viewport().get_visible_rect()
 
 # Function to set the straw's random position
 func set_posiçãoAleatoria() -> void:
-	position.x = randf_range(canudo_width / 2, visible_rect.size.x - canudo_width / 2)
-	position.y = -canudo_height
-	
+	position.x = randf_range(alga_width / 2, visible_rect.size.x - alga_width / 2)
+	position.y = -alga_height
+
 # Called every frame. 'delta' is the time elapsed since the previous frame.
 func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO # Vetor de movimento do canudo.
@@ -35,19 +35,7 @@ func _process(delta: float) -> void:
 	# Straw movement
 	velocity.y += speed
 	position += velocity * delta
-	
-	#Teste Análise de valor limite da posição:
-	if(position.x < 10.625 ):
-		assert(false, "Fora dos limites")
-	elif(position.y < -256 ):
-		assert(false, "Fora dos limites")
-	elif((position.x > 10.625 and position.x < 789.375)  and ( position.y > -32 and position.y < 632) ):
-		assert(true, "Válido")
-	elif(position.x > 789.375):
-		assert(false, "Fora dos limites")
-	elif(position.y > 632):
-		assert(false, "Fora dos limites")
-	
+
 	# If the straw goes off-screen, it will be removed
-	if position.y > (visible_rect.size.y - 2) + canudo_height / 2:
+	if position.y >= visible_rect.size.y + alga_height / 2:
 		queue_free()

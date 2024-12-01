@@ -3,6 +3,7 @@ extends Timer
 var visible_rect_y
 var canudo_speed
 var total_time
+var alga_speed
 
 func update_wait_time(canudo: Node2D) -> void:
 	visible_rect_y = get_parent().get_node("Player").get_viewport().get_visible_rect().size.y
@@ -11,8 +12,20 @@ func update_wait_time(canudo: Node2D) -> void:
 	total_time = visible_rect_y / canudo_speed # Time taken for a canudo to fall across the whole screen
 	wait_time = 1.5 * total_time / Global.spawn_rate # Time to be waited until the next canudo is spawned
 	wait_time = clamp(wait_time, 0.2, 9) # The sweet spot
+	
+	
+	pass
+
+func update_wait_time_alga(alga: Node2D) -> void:
+	visible_rect_y = get_parent().get_node("Player").get_viewport().get_visible_rect().size.y
+	alga_speed = alga.speed
+	
+	total_time = visible_rect_y / canudo_speed # Time taken for a canudo to fall across the whole screen
+	wait_time = 1.5 * total_time / Global.spawn_rate # Time to be waited until the next canudo is spawned
+	wait_time = clamp(wait_time, 0.2, 9) # The sweet spot
 	pass
 
 func _on_timeout() -> void:
 	get_parent().spawn_canudo()
+	get_parent().spawn_alga()
 	pass
