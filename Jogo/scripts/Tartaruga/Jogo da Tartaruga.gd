@@ -25,6 +25,7 @@ func take_damage(damage = 1):
 func reduce_health(damage: int) -> void:
 	player_hp -= damage
 	emit_signal("life_changed", player_hp)
+	check_game_over()
 	if player_hp < 0:
 		player_hp = 0
 
