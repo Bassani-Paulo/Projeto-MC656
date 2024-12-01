@@ -7,6 +7,7 @@ const max_hp: int = 3
 var player_hp: int = max_hp
 var time: int = 0
 
+
 signal life_changed(player_hearts)
 
 # Called when the node enters the scene tree for the first time.
@@ -38,6 +39,8 @@ func update_ui() -> void:
 
 # Function to handle the game over condition
 func game_over():
+	if(time > Global.max_score):
+		Global.max_score = time
 	get_tree().change_scene_to_file("res://scenes/Tartaruga/GameOver.tscn")
 	pass
 
@@ -59,4 +62,5 @@ func spawn_alga() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	update_ui()
+	check_game_over()
 	pass
