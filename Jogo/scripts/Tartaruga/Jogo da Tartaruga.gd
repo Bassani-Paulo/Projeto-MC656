@@ -3,10 +3,10 @@ extends Node2D
 var scene_canudo = load("res://scenes/Tartaruga/Lixo.tscn")
 var scene_alga = load("res://scenes/Tartaruga/alga.tscn")
 
+
 const max_hp: int = 3
 var player_hp: int = max_hp
 var time: int = 0
-
 
 signal life_changed(player_hearts)
 
@@ -20,13 +20,15 @@ func _ready() -> void:
 # Function to handle taking damage
 func take_damage(damage = 1):
 	reduce_health(damage)
+	
+func recive_health(damage = -1):
+	reduce_health(damage)
 
 # Reduce the player's health
 func reduce_health(damage: int) -> void:
 	player_hp -= damage
+	player_hp = min(5, player_hp)
 	emit_signal("life_changed", player_hp)
-	if player_hp < 0:
-		player_hp = 0
 
 # Check if the game is over
 func check_game_over() -> void:
@@ -46,7 +48,7 @@ func game_over():
 
 # Utility function to update the HP Label (use signal or direct reference to HUD)
 func update_score_label():
-	time = time + 1
+	time = (time + 1)
 	$Score_label.text = "Score: " + str(time)
 
 func spawn_canudo() -> void:
@@ -61,6 +63,7 @@ func spawn_alga() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	$"Barra especial".value = $"Barra especial".value + Global.special_bar
 	update_ui()
 	check_game_over()
 	pass

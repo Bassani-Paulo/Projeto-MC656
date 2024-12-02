@@ -11,7 +11,6 @@ var scale_y
 func _ready() -> void:
 	Global.spawn_rate += 1
 	get_parent().get_node("Timer").update_wait_time(self)
-
 	inicializar_dimensões()
 	set_posiçãoAleatoria()
 

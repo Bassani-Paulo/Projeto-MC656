@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://csft1da5da1nm" path="res://Audio/ocean-waves-112906.mp3" id="9_fbxot"]
 [ext_resource type="AudioStream" uid="uid://sba666m36n1o" path="res://Audio/8-bit-retro-game-music-233964.mp3" id="10_y54b4"]
 [ext_resource type="PackedScene" uid="uid://dojdfjo713hun" path="res://scenes/Tartaruga/alga.tscn" id="12_wwtrb"]
-[ext_resource type="Script" path="res://scripts/Tartaruga/alga.gd" id="13_d55x1"]
+[ext_resource type="Texture2D" uid="uid://pjfk42uhneyt" path="res://assets/sprites/button-filled.png" id="13_jkfog"]
 
 [node name="Jogo" type="Node2D"]
 script = ExtResource("1_1u5cp")
@@ -76,7 +76,17 @@ stream = ExtResource("10_y54b4")
 autoplay = true
 
 [node name="Alga" parent="." instance=ExtResource("12_wwtrb")]
-script = ExtResource("13_d55x1")
+
+[node name="Barra especial" type="TextureProgressBar" parent="."]
+offset_left = 605.0
+offset_top = -77.0
+offset_right = 805.0
+offset_bottom = 123.0
+step = 0.0
+texture_under = ExtResource("13_jkfog")
+texture_progress = ExtResource("13_jkfog")
+tint_under = Color(0.499458, 1, 0.899796, 1)
+tint_progress = Color(0, 1, 0, 1)
 
 [connection signal="life_changed" from="." to="HP/Life" method="_on_jogo_life_changed"]
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
