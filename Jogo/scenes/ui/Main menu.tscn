@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d8f12ijtdj30"]
+[gd_scene load_steps=3 format=3 uid="uid://d8f12ijtdj30"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_erewe"]
+[ext_resource type="AudioStream" uid="uid://dgs745dlw8m8b" path="res://Audio/Awakening Nature.mp3" id="2_mll7g"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -50,6 +51,10 @@ text = "Opções"
 [node name="Sair" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Sair"
+
+[node name="AudioMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mll7g")
+autoplay = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JogarTartaruga" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JogarAbelha" to="." method="_on_jogar_abelha_pressed"]
