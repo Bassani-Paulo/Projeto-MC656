@@ -33,7 +33,7 @@ layout_mode = 2
 
 [node name="JogarTartaruga" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Jogo da tartaruga"
+text = "Jogo da Tartaruga"
 
 [node name="JogarAbelha" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
