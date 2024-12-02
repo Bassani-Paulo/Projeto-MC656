@@ -1,5 +1,6 @@
 extends Control
 
+var path_main_menu = "res://scenes/ui/Main menu.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,14 +9,10 @@ func _ready() -> void:
 	get_node("ColorRect/VBoxContainer/Score").text = "Max Score: " + str(Global.max_score)
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _on_jogar_novamente_pressed() -> void:
-	SceneManager.go_back()
+	get_tree().change_scene_to_file("res://scenes/Tartaruga/Jogo.tscn")
 	pass
 
 func _on_voltar_ao_menu_pressed() -> void:
-	SceneManager.change_scene("res://scenes/ui/Main menu.tscn")
+	get_tree().change_scene_to_file(path_main_menu)
 	pass

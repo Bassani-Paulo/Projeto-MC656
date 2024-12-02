@@ -34,14 +34,14 @@ func receive_health(damage = -1):
 func reduce_health(damage: int) -> void:
 	player_hp -= damage
 	player_hp = min(max_hp, player_hp) # Max player hp is 7
-	emit_signal("life_changed", player_hp)	
+	emit_signal("life_changed", player_hp)
 	check_game_over()
 	if player_hp < 0:
 		player_hp = 0
 
 # Check if the game is over
 func check_game_over() -> void:
-	if player_hp == 0:
+	if player_hp < 0:
 		game_over()
 
 # Update UI elements
@@ -52,7 +52,8 @@ func update_ui() -> void:
 func game_over():
 	if(time > Global.max_score):
 		Global.max_score = time
-	SceneManager.change_scene(path_game_over)
+	if not Global.testing:
+		get_tree().change_scene_to_file(path_game_over)
 	pass
 
 # Utility function to update the HP Label (use signal or direct reference to HUD)
@@ -61,16 +62,17 @@ func update_score_label():
 	$Score_label.text = "Score: " + str(time)
 
 func spawn_canudo() -> void:
-	SceneManager.add_scene(path_canudo, self)
+	var instance_canudo = load(path_canudo).instantiate()
+	add_child(instance_canudo)
 	pass
 	
 func spawn_alga() -> void:
-	SceneManager.add_scene(path_alga, self)
+	var instance_alga = load(path_alga).instantiate()
+	add_child(instance_alga)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	$"Barra especial".value = get_node("Player").shell_charge
 	update_ui()
-	check_game_over()
 	pass

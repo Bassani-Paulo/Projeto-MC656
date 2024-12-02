@@ -5,6 +5,8 @@ var jogo
 var double_jogo
 
 func before_each():
+	Global.testing = 1
+	
 	# Create new instances of the Jogo scene before each test
 	jogo = JogoScene.instantiate()
 	double_jogo = partial_double(JogoScene).instantiate()

@@ -6,6 +6,8 @@ var double_jogo
 
 
 func before_each():
+	Global.testing = 1
+	
 	double_jogo = double(load("res://scenes/Tartaruga/Jogo.tscn")).instantiate()
 	player = load("res://scenes/Tartaruga/Player.tscn").instantiate()
 	lixo = load("res://scenes/Tartaruga/Lixo.tscn").instantiate()
