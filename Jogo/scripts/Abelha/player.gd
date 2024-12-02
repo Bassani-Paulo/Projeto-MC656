@@ -46,10 +46,9 @@ func accelerate():
 		update_x_position()
 	
 func decelerate():
-	if speed_state>0:
-		speed_state-=1
-		update_x_position()
-	else:
+	speed_state-=1
+	update_x_position()
+	if speed_state<0:
 		game_over()
 
 func game_over():
@@ -62,3 +61,13 @@ func _input(event):
 	if event.is_action_released("to_attack_stance"):
 		stance = Stance.FLY
 		update_sprite()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.name == "Hazard_Area" and stance == Stance.FLY:
+		area.get_parent().deactivate()
+		decelerate()
+	if area.name == "Flower_Area" and stance == Stance.FLY:
+		area.get_parent().deactivate()
+		accelerate()
+	pass # Replace with function body.

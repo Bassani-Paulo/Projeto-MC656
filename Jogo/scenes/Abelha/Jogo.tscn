@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c88awwxjfk84b"]
+[gd_scene load_steps=6 format=3 uid="uid://c88awwxjfk84b"]
 
 [ext_resource type="Script" path="res://scripts/Abelha/jogo.gd" id="1_1v3ej"]
 [ext_resource type="Texture2D" uid="uid://clr0b20hxbx8w" path="res://assets/sprites/sunflower_background.jpg" id="2_7xwcs"]
 [ext_resource type="PackedScene" uid="uid://ccccvmgjt283y" path="res://scenes/Abelha/Player.tscn" id="3_xh0wb"]
+[ext_resource type="Script" path="res://scripts/Abelha/hazard_spawner.gd" id="4_uf0h4"]
+[ext_resource type="Texture2D" uid="uid://brevo1cowv4bt" path="res://assets/sprites/pesticide.png" id="5_dp1qb"]
 
 [node name="Jogo" type="Node2D"]
 script = ExtResource("1_1v3ej")
@@ -12,3 +14,19 @@ texture = ExtResource("2_7xwcs")
 offset = Vector2(400, 300)
 
 [node name="Player" parent="." instance=ExtResource("3_xh0wb")]
+
+[node name="Hazard_spawner" type="Node2D" parent="."]
+script = ExtResource("4_uf0h4")
+
+[node name="Timer" type="Timer" parent="Hazard_spawner"]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.705882)
+position = Vector2(36, 300)
+scale = Vector2(1, 1.38046)
+texture = ExtResource("5_dp1qb")
+
+[connection signal="timeout" from="Hazard_spawner/Timer" to="Hazard_spawner" method="_on_timer_timeout"]
