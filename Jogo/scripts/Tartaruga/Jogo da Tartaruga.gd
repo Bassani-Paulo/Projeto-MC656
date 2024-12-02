@@ -10,6 +10,8 @@ var time: int = 0
 
 signal life_changed(player_hearts)
 
+var Singleton = Global.get_instance()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.spawn_rate = 1
@@ -41,7 +43,7 @@ func reduce_health(damage: int) -> void:
 
 # Check if the game is over
 func check_game_over() -> void:
-	if player_hp < 0:
+	if player_hp <= 0:
 		game_over()
 
 # Update UI elements
@@ -53,7 +55,7 @@ func game_over():
 	if(time > Global.max_score):
 		Global.max_score = time
 	if not Global.testing:
-		get_tree().change_scene_to_file(path_game_over)
+		Singleton.change_scene(path_game_over)
 	pass
 
 # Utility function to update the HP Label (use signal or direct reference to HUD)
@@ -62,13 +64,11 @@ func update_score_label():
 	$Score_label.text = "Score: " + str(time)
 
 func spawn_canudo() -> void:
-	var instance_canudo = load(path_canudo).instantiate()
-	add_child(instance_canudo)
+	Singleton.add_scene(path_canudo, self)
 	pass
 	
 func spawn_alga() -> void:
-	var instance_alga = load(path_alga).instantiate()
-	add_child(instance_alga)
+	Singleton.add_scene(path_alga, self)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
