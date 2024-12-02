@@ -1,29 +1,39 @@
 extends Node2D
 
-var scene_canudo = load("res://scenes/Tartaruga/Lixo.tscn")
-var scene_alga = load("res://scenes/Tartaruga/alga.tscn")
+var path_game_over = "res://scenes/Tartaruga/GameOver.tscn"
+var path_canudo = "res://scenes/Tartaruga/Lixo.tscn"
+var path_alga = "res://scenes/Tartaruga/alga.tscn"
 
-const max_hp: int = 3
-var player_hp: int = max_hp
+const max_hp: int = 7
+var player_hp: int = 3
 var time: int = 0
-
 
 signal life_changed(player_hearts)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.spawn_rate = 1
+	Global.spawn_rate_alga = 0.5
+	
+	player_hp = 3
 	connect( "life_changed", Callable(get_node("HP/Life"),"on_player_life_changed") )
-	emit_signal("life_changed", max_hp)
-	player_hp = max_hp
+	emit_signal("life_changed", player_hp)
 	pass
 
 # Function to handle taking damage
 func take_damage(damage = 1):
 	reduce_health(damage)
+	time -= 600
+	time = max(time, 0)
+	
+# Function to handle receiving health
+func receive_health(damage = -1):
+	reduce_health(damage)
 
 # Reduce the player's health
 func reduce_health(damage: int) -> void:
 	player_hp -= damage
+	player_hp = min(max_hp, player_hp) # Max player hp is 7
 	emit_signal("life_changed", player_hp)
 	check_game_over()
 	if player_hp < 0:
@@ -31,7 +41,7 @@ func reduce_health(damage: int) -> void:
 
 # Check if the game is over
 func check_game_over() -> void:
-	if player_hp == 0:
+	if player_hp < 0:
 		game_over()
 
 # Update UI elements
@@ -42,7 +52,8 @@ func update_ui() -> void:
 func game_over():
 	if(time > Global.max_score):
 		Global.max_score = time
-	get_tree().change_scene_to_file("res://scenes/Tartaruga/GameOver.tscn")
+	if not Global.testing:
+		get_tree().change_scene_to_file(path_game_over)
 	pass
 
 # Utility function to update the HP Label (use signal or direct reference to HUD)
@@ -51,17 +62,17 @@ func update_score_label():
 	$Score_label.text = "Score: " + str(time)
 
 func spawn_canudo() -> void:
-	var instance_canudo = scene_canudo.instantiate()
+	var instance_canudo = load(path_canudo).instantiate()
 	add_child(instance_canudo)
 	pass
 	
 func spawn_alga() -> void:
-	var instance_alga = scene_alga.instantiate()
+	var instance_alga = load(path_alga).instantiate()
 	add_child(instance_alga)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	$"Barra especial".value = get_node("Player").shell_charge
 	update_ui()
-	check_game_over()
 	pass

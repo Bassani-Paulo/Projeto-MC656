@@ -10,7 +10,7 @@ var scale_y
 # Called when the player enters the scene for the first time.
 func _ready() -> void:
 	Global.spawn_rate += 1
-	get_parent().get_node("Timer").update_wait_time(self)
+	get_parent().get_node("Timer_Canudo").update_wait_time(self)
 
 	inicializar_dimensões()
 	set_posiçãoAleatoria()
@@ -36,17 +36,7 @@ func _process(delta: float) -> void:
 	velocity.y += speed
 	position += velocity * delta
 	
-	#Teste Análise de valor limite da posição:
-	if(position.x < 10.625 ):
-		assert(false, "Fora dos limites")
-	elif(position.y < -256 ):
-		assert(false, "Fora dos limites")
-	elif((position.x > 10.625 and position.x < 789.375)  and ( position.y > -32 and position.y < 632) ):
-		assert(true, "Válido")
-	elif(position.x > 789.375):
-		assert(false, "Fora dos limites")
-	elif(position.y > 632):
-		assert(false, "Fora dos limites")
+	#INSERT
 	
 	# If the straw goes off-screen, it will be removed
 	if position.y > (visible_rect.size.y - 2) + canudo_height / 2:
