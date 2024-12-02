@@ -4,6 +4,7 @@ static var instance : SceneManager = null # Singleton: A instância única da cl
 
 var current_scene : String # Armazena o path da cena atual
 var previous_scene : String # Armazena o path da cena anterior (para poder voltar, se necessário)
+var instanced_scene
 
 # Inicialização do Singleton
 func _ready():
@@ -29,10 +30,21 @@ func change_scene(scene_path: String):
 	get_tree().change_scene_to_file(scene_path)
 	current_scene = scene_path
 
+# Método para instanciar outra cena sobre uma cena existente
+func add_scene(scene_path: String, background_scene: Node):
+	# Se existe a cena de "background"
+	if background_scene:
+		instanced_scene = load(scene_path).instantiate()
+		background_scene.add_child(instanced_scene)
+
 # Método para voltar à cena anterior
 func go_back():
 	if previous_scene:
 		get_tree().change_scene_to_file(previous_scene)
+		
+		var temp = current_scene
+		current_scene = previous_scene
+		previous_scene = temp
 	
 # Método para sair do jogo	
 func exit_game():

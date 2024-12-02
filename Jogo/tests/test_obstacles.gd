@@ -32,6 +32,6 @@ func test_increasing_difficulty():
 	assert_gt(temp, Global.spawn_rate, "Difficulty should have been increasing.")
 	
 func test_restting_difficulty_on_health_lost():
-	player.get_node("Area2D").emit_signal("area_entered", lixo2.get_node("Area2D"))
+	player.get_node("Area2D").emit_signal("area_entered", lixo2.get_node("Area_Lixo"))
 	await wait_frames(2)
 	assert_eq(Global.spawn_rate, 1, "Spawn rate should have been set to 1.")
