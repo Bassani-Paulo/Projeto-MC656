@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbswnembf63pu"]
+
+[ext_resource type="Script" path="res://scripts/Abelha/spider_web.gd" id="1_4jcaq"]
+[ext_resource type="Texture2D" uid="uid://d0ts7xnh0whp1" path="res://assets/sprites/spider_web.png" id="2_5111y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnx13"]
+size = Vector2(41, 252)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3er3"]
+size = Vector2(133.5, 105.5)
+
+[node name="TallFlower" type="Node2D"]
+script = ExtResource("1_4jcaq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5111y")
+
+[node name="Hazard_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard_Area"]
+position = Vector2(-1.5, -7)
+shape = SubResource("RectangleShape2D_vnx13")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hazard_Area"]
+position = Vector2(5.25, -78.75)
+shape = SubResource("RectangleShape2D_f3er3")

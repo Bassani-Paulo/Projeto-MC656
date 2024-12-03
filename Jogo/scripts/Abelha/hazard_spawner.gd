@@ -4,7 +4,8 @@ extends Node2D
 @export var obstacle_scenes: Array = [
 	"res://scenes/Abelha/Tall_Flower.tscn", 
 	"res://scenes/Abelha/Medium_Flower.tscn",
-	"res://scenes/Abelha/Short_Flower.tscn"
+	"res://scenes/Abelha/Short_Flower.tscn",
+	"res://scenes/Abelha/Spider_Web.tscn"
 ]
 
 @export var min_spawn_interval: float = 1.0
