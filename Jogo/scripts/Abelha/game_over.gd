@@ -1,14 +1,17 @@
-extends Control
+extends Node
 
 var Singleton = Global.get_instance()
 
+func _ready() -> void:
+	get_node("game_over").playing = true
+	get_node("CanvasLayer2/CenterContainer/VBoxContainer/Score").text = "Max Score: " + str(Global.max_score_abelha)
+	pass
+
 func _on_retry_pressed() -> void:
-	get_tree().paused = false
-	get_tree().reload_current_scene()
+	Singleton.go_back()
 	pass # Replace with function body.
 
 
 func _on_quit_pressed() -> void:
-	get_tree().paused = false
 	Singleton.change_scene("res://scenes/ui/Main menu.tscn")
 	pass # Replace with function body.
