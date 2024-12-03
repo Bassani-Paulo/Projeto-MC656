@@ -40,6 +40,12 @@ func go_back():
 		current_scene = previous_scene
 		previous_scene = temp
 	
+#Método para recarregar a cena atual
+func refresh():
+	if current_scene:
+		change_scene(current_scene)
+	pass
+	
 # Método para sair do jogo	
 func exit_game():
 	get_tree().quit()
