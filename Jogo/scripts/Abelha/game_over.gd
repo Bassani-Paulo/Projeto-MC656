@@ -6,7 +6,7 @@ func _ready() -> void:
 	get_node("game_over").playing = true
 	get_node("CanvasLayer2/CenterContainer/VBoxContainer/Score").text = "Max Score: " + str(Global.max_score_abelha)
 	pass
-
+  
 func _on_retry_pressed() -> void:
 	Singleton.go_back()
 	pass # Replace with function body.

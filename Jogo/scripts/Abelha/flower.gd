@@ -22,3 +22,6 @@ func deactivate():
 	$Hazard_Area.queue_free()
 	$Flower_Area.queue_free()
 	$Sprite2D.modulate.a = 0.5
+
+func update_speed_modifier(new_speed):
+	speed_modifier = new_speed

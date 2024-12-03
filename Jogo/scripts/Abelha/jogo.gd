@@ -21,11 +21,13 @@ func accelerate():
 	if game_state<MAXSPEED:
 		game_state+=1
 		emit_signal("game_state_changed", game_state)
+		get_tree().call_group("object", "update_speed_modifier", speed_to_modifier[game_state])
 	
 func decelerate():
 	if game_state > 0:
 		game_state-=1
 		emit_signal("game_state_changed", game_state)
+		get_tree().call_group("object", "update_speed_modifier", speed_to_modifier[game_state])
 	else:
 		game_over()
 		
