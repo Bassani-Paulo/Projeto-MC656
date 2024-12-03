@@ -55,6 +55,7 @@ text = "Sair"
 [node name="AudioMenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_mll7g")
 autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JogarTartaruga" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JogarAbelha" to="." method="_on_jogar_abelha_pressed"]

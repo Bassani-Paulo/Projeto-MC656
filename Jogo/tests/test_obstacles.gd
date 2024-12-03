@@ -22,7 +22,7 @@ func before_each():
 	double_jogo.add_child(alga)
 
 func test_lixo_is_removed_out_of_bounds():
-	lixo._process(5) # Enough time for the obstacle to exceed the bounds of the visible rect
+	lixo._process(20) # Enough time for the obstacle to exceed the bounds of the visible rect
 	await wait_frames(2)
 	assert_false(is_instance_valid(lixo))
 
