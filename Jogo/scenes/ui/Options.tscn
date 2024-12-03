@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cppyrsfivya3t"]
+[gd_scene load_steps=3 format=3 uid="uid://cppyrsfivya3t"]
 
 [ext_resource type="Script" path="res://scripts/ui/options.gd" id="1_6uate"]
+[ext_resource type="AudioStream" uid="uid://dgs745dlw8m8b" path="res://Audio/Awakening Nature.mp3" id="3_xlhmq"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -25,10 +26,23 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Não há nada aqui."
+text = "        Volume         "
+horizontal_alignment = 1
+
+[node name="MasterVolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.93
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="Return" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Voltar"
+
+[node name="AudioMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xlhmq")
+autoplay = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]
