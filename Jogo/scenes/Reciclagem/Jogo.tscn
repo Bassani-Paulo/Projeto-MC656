@@ -1,6 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://dikug7kg23oxq"]
+[gd_scene load_steps=10 format=3 uid="uid://cnem07l2n31mx"]
 
 [ext_resource type="Script" path="res://scripts/Reciclagem/jogo.gd" id="1_fepb8"]
+[ext_resource type="Texture2D" uid="uid://djle5cqsrbv1t" path="res://assets/Reciclagem/background.jpg" id="3_5okyl"]
+[ext_resource type="AudioStream" uid="uid://dnbv4ucka5cn6" path="res://Audio/8bit-retro-forest.mp3" id="4_gr7wy"]
+[ext_resource type="Texture2D" uid="uid://c8n11e32vedlg" path="res://assets/Reciclagem/red.png" id="4_sr5g4"]
+[ext_resource type="Texture2D" uid="uid://djsw41bg0sjbl" path="res://assets/Reciclagem/yellow.png" id="5_q418q"]
+[ext_resource type="Texture2D" uid="uid://w3bk74r2b5jp" path="res://assets/Reciclagem/blue.png" id="6_8gdgh"]
+[ext_resource type="Texture2D" uid="uid://vu14nhkthq0u" path="res://assets/Reciclagem/green.png" id="7_poi2p"]
+[ext_resource type="Script" path="res://scripts/Reciclagem/timer.gd" id="8_0i6a3"]
+[ext_resource type="PackedScene" uid="uid://bmtdanko1o6li" path="res://scenes/Reciclagem/Lixo.tscn" id="9_awde6"]
 
 [node name="Jogo" type="Node2D"]
 script = ExtResource("1_fepb8")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(1.31, 1.63)
+texture = ExtResource("3_5okyl")
+centered = false
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gr7wy")
+autoplay = true
+
+[node name="blue" type="Sprite2D" parent="."]
+texture = ExtResource("6_8gdgh")
+centered = false
+offset = Vector2(80, 370)
+
+[node name="green" type="Sprite2D" parent="."]
+texture = ExtResource("7_poi2p")
+centered = false
+offset = Vector2(260, 370)
+
+[node name="red" type="Sprite2D" parent="."]
+texture = ExtResource("4_sr5g4")
+centered = false
+offset = Vector2(440, 370)
+
+[node name="yellow" type="Sprite2D" parent="."]
+texture = ExtResource("5_q418q")
+centered = false
+offset = Vector2(620, 370)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("8_0i6a3")
+
+[node name="Lixo" parent="." instance=ExtResource("9_awde6")]
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
