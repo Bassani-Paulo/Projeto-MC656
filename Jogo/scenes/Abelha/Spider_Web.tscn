@@ -21,6 +21,6 @@ texture = ExtResource("2_5111y")
 position = Vector2(-1.5, -7)
 shape = SubResource("RectangleShape2D_vnx13")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hazard_Area"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hazard_Area" groups=["object"]]
 position = Vector2(5.25, -78.75)
 shape = SubResource("RectangleShape2D_f3er3")

@@ -10,7 +10,7 @@ size = Vector2(17, 177)
 radius = 38.0
 height = 76.0
 
-[node name="TallFlower" type="Node2D"]
+[node name="TallFlower" type="Node2D" groups=["object"]]
 script = ExtResource("1_mkw01")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
