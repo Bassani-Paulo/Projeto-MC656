@@ -6,6 +6,7 @@ signal game_state_changed(new_speed)
 var game_state = 1
 const MAXSPEED = 3
 var time = 0
+var speed_to_modifier = {0:0.75, 1:1, 2:1.25, 3:1.5}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
