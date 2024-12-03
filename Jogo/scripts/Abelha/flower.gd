@@ -1,6 +1,7 @@
 extends Node2D
 
-const SPEEED = 200
+const base_speed = 300
+var speed_modifier = 1
 var height
 var width
 
@@ -14,7 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x -= delta*SPEEED
+	position.x -= delta*speed_modifier*base_speed
 	pass
 
 func deactivate():
