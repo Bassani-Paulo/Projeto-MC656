@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d8f12ijtdj30"]
+[gd_scene load_steps=12 format=3 uid="uid://d8f12ijtdj30"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_erewe"]
 [ext_resource type="FontFile" uid="uid://cf5j3480o60n3" path="res://fonts/kirifont/KiriFont.ttf" id="2_lgpdy"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://1gv2ewt2ph7s" path="res://assets/sprites/menu tartaruga.png" id="4_y47bs"]
 [ext_resource type="Script" path="res://scripts/ui/botao_jogo_abelha.gd" id="5_qy67s"]
 [ext_resource type="Texture2D" uid="uid://dbgao3gxd1l2p" path="res://assets/sprites/menu abelha.jpg" id="6_bexhk"]
+[ext_resource type="Script" path="res://scenes/ui/botao_jogo_reciclagem.gd" id="7_wvsnk"]
+[ext_resource type="Texture2D" uid="uid://c0ec7ft83a6ta" path="res://assets/sprites/menu_jogo_reciclagem.jpg" id="8_v4lic"]
 
 [sub_resource type="Theme" id="Theme_lwx7p"]
 
@@ -86,6 +88,16 @@ texture = ExtResource("6_bexhk")
 custom_minimum_size = Vector2(210, 130)
 layout_mode = 2
 text = "Jogo da Reciclagem"
+script = ExtResource("7_wvsnk")
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/JogarReciclagem"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 125.0
+texture = ExtResource("8_v4lic")
 
 [node name="Opções" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(210, 130)
@@ -112,6 +124,8 @@ autoplay = true
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer/JogarAbelha" to="CenterContainer/VBoxContainer/JogarAbelha" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CenterContainer/VBoxContainer/JogarAbelha" to="CenterContainer/VBoxContainer/JogarAbelha" method="_on_mouse_exited"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JogarAbelha" to="." method="_on_jogar_abelha_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/JogarReciclagem" to="CenterContainer/VBoxContainer/JogarReciclagem" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/JogarReciclagem" to="CenterContainer/VBoxContainer/JogarReciclagem" method="_on_mouse_exited"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JogarReciclagem" to="." method="_on_jogar_reciclagem_pressed"]
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Opções" to="CenterContainer/VBoxContainer/Opções" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CenterContainer/VBoxContainer/Opções" to="CenterContainer/VBoxContainer/Opções" method="_on_mouse_exited"]

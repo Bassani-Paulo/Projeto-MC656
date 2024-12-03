@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnpyn385qbs5w"
-path="res://.godot/imported/menu opcoes.jpg-126461a4c1ca359ea696850cf13be49d.ctex"
+uid="uid://c0ec7ft83a6ta"
+path="res://.godot/imported/menu_jogo_reciclagem.jpg-0309fca4a69f74b16a8a632d8bbb8797.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/menu opcoes.jpg"
-dest_files=["res://.godot/imported/menu opcoes.jpg-126461a4c1ca359ea696850cf13be49d.ctex"]
+source_file="res://assets/sprites/menu_jogo_reciclagem.jpg"
+dest_files=["res://.godot/imported/menu_jogo_reciclagem.jpg-0309fca4a69f74b16a8a632d8bbb8797.ctex"]
 
 [params]
 
