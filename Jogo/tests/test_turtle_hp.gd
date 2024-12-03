@@ -5,6 +5,8 @@ var jogo
 var double_jogo
 
 func before_each():
+	Global.testing = 1
+	
 	# Create new instances of the Jogo scene before each test
 	jogo = JogoScene.instantiate()
 	double_jogo = partial_double(JogoScene).instantiate()
@@ -32,14 +34,16 @@ func test_hp_not_below_zero():
 func test_player_dies():
 	# Call the take_damage function with lethal damage
 	double_jogo.take_damage(5)
-	
+	await wait_frames(2)
 	# Assert that the player dies
 	assert_called(double_jogo, "game_over")
 	
 # Test if the HP label shows health correctly
-func test_HP_label():
+func test_hearts():
 	# Call the take_damage function with 1 damage
-	jogo.take_damage()
+	double_jogo.take_damage()
+	
+	var heart = double_jogo.get_node("HP/Life/Coracao")
 	
 	# Assert that the player HP is showed correctly
-	assert_eq(jogo.get_node("Hp_label").text, "HP: 2/3", "Player HP should be 2/3")
+	assert_eq(heart.size.x, 2 * heart.texture.get_width(), "Player should have 2 hearts")

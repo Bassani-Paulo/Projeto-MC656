@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://d8f12ijtdj30"]
+[gd_scene load_steps=12 format=3 uid="uid://d8f12ijtdj30"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_erewe"]
+[ext_resource type="FontFile" uid="uid://cf5j3480o60n3" path="res://fonts/kirifont/KiriFont.ttf" id="2_lgpdy"]
+[ext_resource type="AudioStream" uid="uid://dgs745dlw8m8b" path="res://Audio/Awakening Nature.mp3" id="2_mll7g"]
+[ext_resource type="Script" path="res://scripts/ui/botao_jogo_tartaruga.gd" id="3_rmqdo"]
+[ext_resource type="Texture2D" uid="uid://1gv2ewt2ph7s" path="res://assets/sprites/menu tartaruga.png" id="4_y47bs"]
+[ext_resource type="Script" path="res://scripts/ui/botao_jogo_abelha.gd" id="5_qy67s"]
+[ext_resource type="Texture2D" uid="uid://dbgao3gxd1l2p" path="res://assets/sprites/menu abelha.jpg" id="6_bexhk"]
+[ext_resource type="Script" path="res://scripts/ui/botao_jogo_reciclagem.gd" id="7_wvsnk"]
+[ext_resource type="Texture2D" uid="uid://c0ec7ft83a6ta" path="res://assets/sprites/menu_jogo_reciclagem.jpg" id="8_v4lic"]
+
+[sub_resource type="Theme" id="Theme_lwx7p"]
+
+[sub_resource type="GDScript" id="GDScript_0slrl"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -18,7 +30,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.352941, 0.65098, 0.8, 1)
+color = Color(0.188004, 0.484833, 0.293521, 1)
+
+[node name="Titulo" type="Label" parent="ColorRect"]
+layout_mode = 2
+offset_left = 130.0
+offset_top = 77.0
+offset_right = 663.0
+offset_bottom = 109.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgpdy")
+theme_override_font_sizes/font_size = 31
+text = "As Aventuras Ambientais"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -28,31 +51,84 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="GridContainer" parent="CenterContainer"]
 layout_mode = 2
+columns = 2
 
 [node name="JogarTartaruga" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(210, 130)
 layout_mode = 2
-text = "Jogo da tartaruga"
+text = "Jogo da Tartaruga"
+script = ExtResource("3_rmqdo")
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/JogarTartaruga"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 125.0
+texture = ExtResource("4_y47bs")
 
 [node name="JogarAbelha" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Jogo da Abelha"
+text = "Jogo da Abelha    "
+script = ExtResource("5_qy67s")
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/JogarAbelha"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 125.0
+texture = ExtResource("6_bexhk")
 
 [node name="JogarReciclagem" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(210, 130)
 layout_mode = 2
 text = "Jogo da Reciclagem"
+script = ExtResource("7_wvsnk")
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/JogarReciclagem"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 125.0
+texture = ExtResource("8_v4lic")
 
 [node name="Opções" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(210, 130)
 layout_mode = 2
+theme = SubResource("Theme_lwx7p")
 text = "Opções"
+script = SubResource("GDScript_0slrl")
 
-[node name="Sair" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Sair" type="Button" parent="."]
 layout_mode = 2
+offset_left = 300.0
+offset_top = 500.0
+offset_right = 500.0
+offset_bottom = 531.0
 text = "Sair"
 
+[node name="AudioMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mll7g")
+autoplay = true
+parameters/looping = true
+
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/JogarTartaruga" to="CenterContainer/VBoxContainer/JogarTartaruga" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/JogarTartaruga" to="CenterContainer/VBoxContainer/JogarTartaruga" method="_on_mouse_exited"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JogarTartaruga" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/JogarAbelha" to="CenterContainer/VBoxContainer/JogarAbelha" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/JogarAbelha" to="CenterContainer/VBoxContainer/JogarAbelha" method="_on_mouse_exited"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JogarAbelha" to="." method="_on_jogar_abelha_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/JogarReciclagem" to="CenterContainer/VBoxContainer/JogarReciclagem" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/JogarReciclagem" to="CenterContainer/VBoxContainer/JogarReciclagem" method="_on_mouse_exited"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JogarReciclagem" to="." method="_on_jogar_reciclagem_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Opções" to="CenterContainer/VBoxContainer/Opções" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/Opções" to="CenterContainer/VBoxContainer/Opções" method="_on_mouse_exited"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Opções" to="." method="_on_opções_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]
+[connection signal="pressed" from="Sair" to="." method="_on_sair_pressed"]

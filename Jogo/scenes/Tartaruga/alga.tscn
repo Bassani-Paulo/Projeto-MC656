@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dojdfjo713hun"]
+
+[ext_resource type="Texture2D" uid="uid://b3wr23ob867x3" path="res://assets/sprites/alga.png" id="1_1rxha"]
+[ext_resource type="Script" path="res://scripts/Tartaruga/alga.gd" id="1_lduia"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kv26r"]
+radius = 7.61905
+
+[node name="Alga" type="Node2D"]
+script = ExtResource("1_lduia")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("1_1rxha")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+scale = Vector2(39.55, 36.05)
+
+[node name="Area_Alga" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Alga"]
+position = Vector2(0, 10)
+scale = Vector2(4.2, 4.2)
+shape = SubResource("CapsuleShape2D_kv26r")

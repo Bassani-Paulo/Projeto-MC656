@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhs2823q1wmvv"]
+
+[ext_resource type="Script" path="res://scripts/Abelha/flower.gd" id="1_mkw01"]
+[ext_resource type="Texture2D" uid="uid://bool22wjlbnuo" path="res://assets/sprites/short_flower.png" id="2_151ma"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnx13"]
+size = Vector2(17, 177)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4v68o"]
+radius = 38.0
+height = 76.0
+
+[node name="TallFlower" type="Node2D" groups=["object"]]
+script = ExtResource("1_mkw01")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_151ma")
+
+[node name="Hazard_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard_Area"]
+position = Vector2(3.5, 32.5)
+shape = SubResource("RectangleShape2D_vnx13")
+
+[node name="Flower_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flower_Area"]
+position = Vector2(5, -91)
+shape = SubResource("CapsuleShape2D_4v68o")

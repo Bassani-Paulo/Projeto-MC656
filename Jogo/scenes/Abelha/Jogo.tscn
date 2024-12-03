@@ -1,6 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://c88awwxjfk84b"]
+[gd_scene load_steps=10 format=3 uid="uid://c88awwxjfk84b"]
 
 [ext_resource type="Script" path="res://scripts/Abelha/jogo.gd" id="1_1v3ej"]
+[ext_resource type="Texture2D" uid="uid://clr0b20hxbx8w" path="res://assets/sprites/sunflower_background.jpg" id="2_7xwcs"]
+[ext_resource type="Script" path="res://scripts/Abelha/parallax_background.gd" id="2_fy2bk"]
+[ext_resource type="PackedScene" uid="uid://ccccvmgjt283y" path="res://scenes/Abelha/Player.tscn" id="3_xh0wb"]
+[ext_resource type="Script" path="res://scripts/Abelha/hazard_spawner.gd" id="4_uf0h4"]
+[ext_resource type="Texture2D" uid="uid://brevo1cowv4bt" path="res://assets/sprites/pesticide.png" id="5_dp1qb"]
+[ext_resource type="AudioStream" uid="uid://c61rkgi1psjgq" path="res://Audio/8bit-adventure.mp3" id="8_7if32"]
+[ext_resource type="Script" path="res://scripts/Abelha/score_label.gd" id="9_8p0r2"]
+[ext_resource type="AudioStream" uid="uid://dmcyycbog5kng" path="res://Audio/game-over-38511.mp3" id="9_xblsl"]
 
 [node name="Jogo" type="Node2D"]
 script = ExtResource("1_1v3ej")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_fy2bk")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(800, 0)
+
+[node name="Backgound" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_7xwcs")
+offset = Vector2(400, 300)
+
+[node name="Player" parent="." instance=ExtResource("3_xh0wb")]
+
+[node name="Hazard_spawner" type="Node2D" parent="."]
+script = ExtResource("4_uf0h4")
+
+[node name="Timer" type="Timer" parent="Hazard_spawner"]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.705882)
+position = Vector2(36, 300)
+scale = Vector2(1, 1.38046)
+texture = ExtResource("5_dp1qb")
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7if32")
+autoplay = true
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_xblsl")
+
+[node name="Score_label" type="Label" parent="."]
+offset_top = 50.0
+offset_right = 115.0
+offset_bottom = 97.0
+text = "Score: 0"
+script = ExtResource("9_8p0r2")
+
+[connection signal="game_state_changed" from="." to="ParallaxBackground" method="_on_jogo_game_state_changed"]
+[connection signal="game_state_changed" from="." to="Player" method="_on_jogo_game_state_changed"]
+[connection signal="game_state_changed" from="." to="Hazard_spawner" method="_on_jogo_game_state_changed"]
+[connection signal="timeout" from="Hazard_spawner/Timer" to="Hazard_spawner" method="_on_timer_timeout"]
