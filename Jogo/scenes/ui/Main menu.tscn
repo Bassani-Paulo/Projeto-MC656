@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1gv2ewt2ph7s" path="res://assets/sprites/menu tartaruga.png" id="4_y47bs"]
 [ext_resource type="Script" path="res://scripts/ui/botao_jogo_abelha.gd" id="5_qy67s"]
 [ext_resource type="Texture2D" uid="uid://dbgao3gxd1l2p" path="res://assets/sprites/menu abelha.jpg" id="6_bexhk"]
-[ext_resource type="Script" path="res://scenes/ui/botao_jogo_reciclagem.gd" id="7_wvsnk"]
+[ext_resource type="Script" path="res://scripts/ui/botao_jogo_reciclagem.gd" id="7_wvsnk"]
 [ext_resource type="Texture2D" uid="uid://c0ec7ft83a6ta" path="res://assets/sprites/menu_jogo_reciclagem.jpg" id="8_v4lic"]
 
 [sub_resource type="Theme" id="Theme_lwx7p"]
@@ -117,6 +117,7 @@ text = "Sair"
 [node name="AudioMenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_mll7g")
 autoplay = true
+parameters/looping = true
 
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer/JogarTartaruga" to="CenterContainer/VBoxContainer/JogarTartaruga" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CenterContainer/VBoxContainer/JogarTartaruga" to="CenterContainer/VBoxContainer/JogarTartaruga" method="_on_mouse_exited"]
