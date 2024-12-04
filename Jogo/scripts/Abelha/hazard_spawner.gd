@@ -14,7 +14,6 @@ extends Node2D
 var speed_state = 1
 var speed_to_modifier = {0:0.75, 1:1, 2:1.25, 3:1.5}
 
-
 func _ready():
 	spawn_obstacle()
 	schedule_next_spawn()

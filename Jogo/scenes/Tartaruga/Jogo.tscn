@@ -71,10 +71,12 @@ text = "Score: 0"
 stream = ExtResource("9_fbxot")
 volume_db = 2.0
 autoplay = true
+parameters/looping = true
 
 [node name="Musica_fundo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_y54b4")
 autoplay = true
+parameters/looping = true
 
 [node name="Timer_Alga" type="Timer" parent="."]
 wait_time = 8.0

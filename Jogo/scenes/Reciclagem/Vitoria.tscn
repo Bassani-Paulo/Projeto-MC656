@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://dla54uxsauiil"]
+
+[ext_resource type="Script" path="res://scripts/Reciclagem/victory.gd" id="1_2shrw"]
+[ext_resource type="AudioStream" uid="uid://dgb4ohj606hgo" path="res://Audio/winsquare-6993.mp3" id="2_qre5c"]
+
+[node name="Vitoria" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 600.0
+script = ExtResource("1_2shrw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 600.0
+color = Color(0.262536, 0.695427, 0.593844, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 0
+offset_left = 297.0
+offset_top = 203.0
+offset_right = 505.0
+offset_bottom = 398.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Score" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Parabéns! Você conseguiu reciclar todo o lixo.
+Max Score = 50"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="JogarNovamente" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Jogar novamente"
+
+[node name="VoltarAoMenu" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Voltar para o menu"
+
+[node name="Winn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qre5c")
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/JogarNovamente" to="." method="_on_jogar_novamente_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/VoltarAoMenu" to="." method="_on_voltar_ao_menu_pressed"]
