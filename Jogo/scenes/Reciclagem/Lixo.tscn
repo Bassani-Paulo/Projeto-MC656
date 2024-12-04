@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmtdanko1o6li"]
+[gd_scene load_steps=15 format=3 uid="uid://bmtdanko1o6li"]
 
 [ext_resource type="Script" path="res://scripts/Reciclagem/lixo.gd" id="1_exdjq"]
 [ext_resource type="Texture2D" uid="uid://b2p1vo3fs4w6u" path="res://assets/Reciclagem/Lixo/botijao.png" id="2_kjc18"]
 [ext_resource type="Texture2D" uid="uid://civvm6oooa0ob" path="res://assets/Reciclagem/Lixo/botijao2.png" id="3_yo7bs"]
 [ext_resource type="Texture2D" uid="uid://bk1rs2q4nrsjh" path="res://assets/Reciclagem/Lixo/caixa.png" id="4_m2d55"]
 [ext_resource type="Texture2D" uid="uid://b1uipyy2w28ts" path="res://assets/Reciclagem/Lixo/garrafa_plastico.png" id="5_0q37x"]
+[ext_resource type="Texture2D" uid="uid://dqcex6chf8bmd" path="res://assets/Reciclagem/Lixo/garrafa2.png" id="5_eql1d"]
 [ext_resource type="Texture2D" uid="uid://ptb16gidg4m3" path="res://assets/Reciclagem/Lixo/garrafa_vidro.png" id="6_ffnm1"]
 [ext_resource type="Texture2D" uid="uid://ds8vavythlk1l" path="res://assets/Reciclagem/Lixo/jornal.png" id="7_as75f"]
 [ext_resource type="Texture2D" uid="uid://dorpcl8d2sp6u" path="res://assets/Reciclagem/Lixo/lata1.png" id="8_swrrk"]
@@ -13,56 +14,69 @@
 [ext_resource type="Texture2D" uid="uid://djgr1q6beh0l0" path="res://assets/Reciclagem/Lixo/papelao.png" id="11_7rtpj"]
 [ext_resource type="Texture2D" uid="uid://cubwqejmuvcc3" path="res://assets/Reciclagem/Lixo/vidro.png" id="12_efjiu"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2tcm"]
+
 [node name="Lixo" type="Node2D"]
 script = ExtResource("1_exdjq")
 
 [node name="Storage" type="Node2D" parent="."]
-
-[node name="botijao" type="Sprite2D" parent="Storage"]
 visible = false
-texture = ExtResource("2_kjc18")
 
-[node name="botijao2" type="Sprite2D" parent="Storage"]
-visible = false
-texture = ExtResource("3_yo7bs")
-
-[node name="caixa" type="Sprite2D" parent="Storage"]
+[node name="blue0" type="Sprite2D" parent="Storage"]
 visible = false
 texture = ExtResource("4_m2d55")
 
-[node name="garrafa2" type="Sprite2D" parent="Storage"]
-visible = false
-
-[node name="garrafa_plastico" type="Sprite2D" parent="Storage"]
-visible = false
-texture = ExtResource("5_0q37x")
-
-[node name="garrafa_vidro" type="Sprite2D" parent="Storage"]
-visible = false
-texture = ExtResource("6_ffnm1")
-
-[node name="jornal" type="Sprite2D" parent="Storage"]
+[node name="blue1" type="Sprite2D" parent="Storage"]
 visible = false
 texture = ExtResource("7_as75f")
 
-[node name="lata1" type="Sprite2D" parent="Storage"]
-visible = false
-texture = ExtResource("8_swrrk")
-
-[node name="lata2" type="Sprite2D" parent="Storage"]
-visible = false
-texture = ExtResource("9_gflyw")
-
-[node name="lata3" type="Sprite2D" parent="Storage"]
-visible = false
-texture = ExtResource("10_tku7k")
-
-[node name="papelao" type="Sprite2D" parent="Storage"]
+[node name="blue2" type="Sprite2D" parent="Storage"]
 visible = false
 texture = ExtResource("11_7rtpj")
 
-[node name="vidro" type="Sprite2D" parent="Storage"]
+[node name="green0" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("5_eql1d")
+
+[node name="green1" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("6_ffnm1")
+
+[node name="green2" type="Sprite2D" parent="Storage"]
 visible = false
 texture = ExtResource("12_efjiu")
 
+[node name="red0" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("8_swrrk")
+
+[node name="red1" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("9_gflyw")
+
+[node name="red2" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("10_tku7k")
+
+[node name="yellow0" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("2_kjc18")
+
+[node name="yellow1" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("3_yo7bs")
+
+[node name="yellow2" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("5_0q37x")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_k2tcm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

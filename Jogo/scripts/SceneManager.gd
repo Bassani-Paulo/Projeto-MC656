@@ -9,6 +9,9 @@ var path_main_menu = "res://scenes/ui/Main menu.tscn"
 
 var instance : Scene_Manager = self # Singleton: A única instância da classe
 
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
+
 func _ready() -> void:
 	get_tree().change_scene_to_file(path_main_menu)
 	current_scene = path_main_menu
