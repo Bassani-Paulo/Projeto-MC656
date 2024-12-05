@@ -81,6 +81,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		
 		get_parent().take_damage()
 		area.get_parent().queue_free()
+		shell_charge = 10
 	if area.name == "Area_Alga" and state == CONDITION.Normal:
 		if $Eat_canudo:
 			$Eat_canudo.play()

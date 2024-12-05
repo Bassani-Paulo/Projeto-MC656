@@ -14,12 +14,17 @@ var Singleton = Global.get_instance()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	life_changed.get_name()
 	Global.spawn_rate = 1
 	Global.spawn_rate_alga = 0.5
 	
 	player_hp = 3
 	connect( "life_changed", Callable(get_node("HP/Life"),"on_player_life_changed") )
 	emit_signal("life_changed", player_hp)
+	
+	ajusta_posicao($Charge_label, $"Barra especial")
+	$Charge_label.z_index = 1
+	$Score_label.z_index = 1
 	pass
 
 # Function to handle taking damage
@@ -49,6 +54,7 @@ func check_game_over() -> void:
 # Update UI elements
 func update_ui() -> void:
 	update_score_label()
+	update_charge_label()
 
 # Function to handle the game over condition
 func game_over():
@@ -62,6 +68,10 @@ func game_over():
 func update_score_label():
 	time = time + 1
 	$Score_label.text = "Score: " + str(time)
+	
+# Utility function to update the Shell Charge Label
+func update_charge_label():
+	$Charge_label.text = "Carga do casco: " + str(int(get_node("Player").shell_charge*10)) + "%"
 
 func spawn_canudo() -> void:
 	Singleton.add_scene(path_canudo, self)
@@ -69,6 +79,15 @@ func spawn_canudo() -> void:
 	
 func spawn_alga() -> void:
 	Singleton.add_scene(path_alga, self)
+	pass
+
+func ajusta_posicao(label : Label, reference : Object) -> void:
+	var scale_ref = reference.scale.x
+	
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.position.x = reference.position.x + (reference.texture_progress.get_width()*scale_ref - label.size.x)/2
+	label.position.y = reference.position.y + (reference.texture_progress.get_height()*scale_ref + label.size.y)/2
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
