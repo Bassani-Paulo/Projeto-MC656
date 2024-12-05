@@ -22,32 +22,32 @@ func test_below_lower_limit_y():
 	double_jogo.add_child(instance1)
 	instance1.position.y = -65
 	instance1._process(0)
-	assert_eq(instance1.is_valido, true, "Posição Inválida")
+	assert_eq(instance1.is_valido, false)
 
 func test_lower_limit_y():
 	var instance2 = lixo.instantiate()
 	double_jogo.add_child(instance2)
 	instance2.position.y = -64
 	instance2._process(0)
-	assert_eq(instance2.is_valido, true, "Posição Inválida")
+	assert_eq(instance2.is_valido, true)
 
 func test_in_the_middle_y():
 	var instance3 = lixo.instantiate()
 	double_jogo.add_child(instance3)
 	instance3.position.y = 368
 	instance3._process(0)
-	assert_eq(instance3.is_valido, true, "Posição Inválida")
+	assert_eq(instance3.is_valido, true)
 
 func test_upper_limit_y():
 	var instance4 = lixo.instantiate()
 	double_jogo.add_child(instance4)
 	instance4.position.y = 800
 	instance4._process(0)
-	assert_eq(instance4.is_valido, true, "Posição Inválida")
+	assert_eq(instance4.is_valido, true)
 	
 func test_above_upper_limit_y():
 	var instance5 = lixo.instantiate()
 	double_jogo.add_child(instance5)
 	instance5.position.x = 801
 	instance5._process(0)
-	assert_eq(instance5.is_valido, true, "Posição Inválida")
+	assert_eq(instance5.is_valido, false)

@@ -1,6 +1,151 @@
-[gd_scene load_steps=2 format=3 uid="uid://dikug7kg23oxq"]
+[gd_scene load_steps=17 format=3 uid="uid://cnem07l2n31mx"]
 
 [ext_resource type="Script" path="res://scripts/Reciclagem/jogo.gd" id="1_fepb8"]
+[ext_resource type="Texture2D" uid="uid://djle5cqsrbv1t" path="res://assets/Reciclagem/background.jpg" id="3_5okyl"]
+[ext_resource type="AudioStream" uid="uid://dnbv4ucka5cn6" path="res://Audio/8bit-retro-forest.mp3" id="4_gr7wy"]
+[ext_resource type="Texture2D" uid="uid://c8n11e32vedlg" path="res://assets/Reciclagem/red.png" id="4_sr5g4"]
+[ext_resource type="Texture2D" uid="uid://djsw41bg0sjbl" path="res://assets/Reciclagem/yellow.png" id="5_q418q"]
+[ext_resource type="Texture2D" uid="uid://w3bk74r2b5jp" path="res://assets/Reciclagem/blue.png" id="6_8gdgh"]
+[ext_resource type="Texture2D" uid="uid://vu14nhkthq0u" path="res://assets/Reciclagem/green.png" id="7_poi2p"]
+[ext_resource type="PackedScene" uid="uid://bmtdanko1o6li" path="res://scenes/Reciclagem/Lixo.tscn" id="9_awde6"]
+[ext_resource type="PackedScene" uid="uid://78miue8c3ccp" path="res://scenes/Reciclagem/Cloud.tscn" id="10_p1p5q"]
+[ext_resource type="Script" path="res://scripts/Reciclagem/timer_cloud.gd" id="11_l4sps"]
+[ext_resource type="AudioStream" uid="uid://cp87viu08wt7p" path="res://Audio/Villager_deny1.ogg" id="12_8x36c"]
+[ext_resource type="AudioStream" uid="uid://c30rwh5pxyiuq" path="res://Audio/Villager_accept2.ogg" id="13_7t6jb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbiag"]
+size = Vector2(143.007, 140.298)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1m4d6"]
+size = Vector2(147.485, 142.836)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhlbk"]
+size = Vector2(147.36, 144.328)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekp6p"]
+size = Vector2(149.97, 146.269)
 
 [node name="Jogo" type="Node2D"]
 script = ExtResource("1_fepb8")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.78)
+texture = ExtResource("3_5okyl")
+centered = false
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gr7wy")
+autoplay = true
+parameters/looping = true
+
+[node name="blue" type="Sprite2D" parent="."]
+position = Vector2(80, 400)
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("6_8gdgh")
+centered = false
+
+[node name="Area2D_blue" type="Area2D" parent="blue"]
+position = Vector2(92, 381)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blue/Area2D_blue"]
+position = Vector2(-17.235, -300.403)
+shape = SubResource("RectangleShape2D_fbiag")
+
+[node name="green" type="Sprite2D" parent="."]
+position = Vector2(260, 400)
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("7_poi2p")
+centered = false
+
+[node name="Area2D_green" type="Area2D" parent="green"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="green/Area2D_green"]
+position = Vector2(74.0186, 85.2985)
+shape = SubResource("RectangleShape2D_1m4d6")
+
+[node name="red" type="Sprite2D" parent="."]
+position = Vector2(440, 401)
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("4_sr5g4")
+centered = false
+
+[node name="Area2D_red" type="Area2D" parent="red"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="red/Area2D_red"]
+position = Vector2(72.5886, 86.0447)
+shape = SubResource("RectangleShape2D_uhlbk")
+
+[node name="yellow" type="Sprite2D" parent="."]
+position = Vector2(620, 400)
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("5_q418q")
+centered = false
+
+[node name="Area2D_yellow" type="Area2D" parent="yellow"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="yellow/Area2D_yellow"]
+position = Vector2(74.2687, 85.0747)
+shape = SubResource("RectangleShape2D_ekp6p")
+
+[node name="Lixo" parent="." instance=ExtResource("9_awde6")]
+
+[node name="Score_label" type="Label" parent="."]
+offset_top = 50.0
+offset_right = 115.0
+offset_bottom = 97.0
+text = "Score: 0"
+
+[node name="Erros_label" type="Label" parent="."]
+offset_top = 50.0
+offset_right = 115.0
+offset_bottom = 97.0
+text = "Erros: 0/10"
+
+[node name="Papel" type="Label" parent="."]
+offset_top = 50.0
+offset_right = 115.0
+offset_bottom = 97.0
+text = "Papel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Vidro" type="Label" parent="."]
+offset_top = 50.0
+offset_right = 115.0
+offset_bottom = 97.0
+text = "Vidro"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Plástico" type="Label" parent="."]
+offset_top = 50.0
+offset_right = 115.0
+offset_bottom = 97.0
+text = "Plástico"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Metal" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 99.0
+offset_right = 147.0
+offset_bottom = 146.0
+pivot_offset = Vector2(57.5, 23.5)
+text = "Metal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cloud" parent="." instance=ExtResource("10_p1p5q")]
+
+[node name="TimerCloud" type="Timer" parent="."]
+wait_time = 11.0
+autostart = true
+script = ExtResource("11_l4sps")
+
+[node name="VillagerDeny" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_8x36c")
+
+[node name="VillagerAccept" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_7t6jb")
+
+[connection signal="timeout" from="TimerCloud" to="TimerCloud" method="_on_timeout"]

@@ -25,24 +25,24 @@ func before_each():
 func test_below_lower_limit_canudo():
 	timer_canudo.wait_time = 0.1
 	timer_canudo.update_wait_time(lixo)
-	assert_eq(timer_canudo.is_valido, true, "Tempo Inválido")
+	assert_eq(timer_canudo.is_valido, false)
 
 func test_lower_limit_canudo():
 	timer_canudo.wait_time = 0.2
 	timer_canudo.update_wait_time(lixo)
-	assert_eq(timer_canudo.is_valido, true, "Tempo Inválido")
+	assert_eq(timer_canudo.is_valido, true)
 
 func test_in_the_middle_canudo():
 	timer_canudo.wait_time = 2.6
 	timer_canudo.update_wait_time(lixo)
-	assert_eq(timer_canudo.is_valido, true, "Tempo Inválido")
+	assert_eq(timer_canudo.is_valido, true)
 
 func test_upper_limit_canudo():
 	timer_canudo.wait_time = 5
 	timer_canudo.update_wait_time(lixo)
-	assert_eq(timer_canudo.is_valido, true, "Tempo Inválido")
+	assert_eq(timer_canudo.is_valido, true)
 	
 func test_above_upper_limit_canudo():
 	timer_canudo.wait_time = 5.1
 	timer_canudo.update_wait_time(lixo)
-	assert_eq(timer_canudo.is_valido, true, "Tempo Inválido")
+	assert_eq(timer_canudo.is_valido, false)

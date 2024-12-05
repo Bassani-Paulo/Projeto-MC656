@@ -25,24 +25,24 @@ func before_each():
 func test_below_lower_limit_alga():
 	timer_alga.wait_time = 0.4
 	timer_alga.update_wait_time(alga)
-	assert_eq(timer_alga.is_valido, true, "Tempo Inválido")
+	assert_eq(timer_alga.is_valido, false)
 
 func test_lower_limit_alga():
 	timer_alga.wait_time = 0.5
 	timer_alga.update_wait_time(alga)
-	assert_eq(timer_alga.is_valido, true, "Tempo Inválido")
+	assert_eq(timer_alga.is_valido, true)
 
 func test_in_the_middle_alga():
 	timer_alga.wait_time = 32.25
 	timer_alga.update_wait_time(alga)
-	assert_eq(timer_alga.is_valido, true, "Tempo Inválido")
+	assert_eq(timer_alga.is_valido, true)
 
 func test_upper_limit_alga():
 	timer_alga.wait_time = 64
 	timer_alga.update_wait_time(alga)
-	assert_eq(timer_alga.is_valido, true, "Tempo Inválido")
+	assert_eq(timer_alga.is_valido, true)
 	
 func test_above_upper_limit_alga():
 	timer_alga.wait_time = 65
 	timer_alga.update_wait_time(alga)
-	assert_eq(timer_alga.is_valido, true, "Tempo Inválido")
+	assert_eq(timer_alga.is_valido, false)

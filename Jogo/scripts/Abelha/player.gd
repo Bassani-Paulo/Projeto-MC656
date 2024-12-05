@@ -25,7 +25,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	position.y = get_viewport().get_mouse_position().y
 	position.y = clamp(position.y, bee_height/2 - wing_ajustment, visible_rect_size.y - bee_height/2)
 	pass

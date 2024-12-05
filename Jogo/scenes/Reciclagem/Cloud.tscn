@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://78miue8c3ccp"]
+
+[ext_resource type="Script" path="res://scripts/Reciclagem/cloud.gd" id="1_d5yci"]
+[ext_resource type="Texture2D" uid="uid://ck23pr5yoi8o1" path="res://assets/Reciclagem/Clouds/cloud1.png" id="2_knfvq"]
+[ext_resource type="Texture2D" uid="uid://81s4hgsfhbgg" path="res://assets/Reciclagem/Clouds/cloud2.png" id="3_mmw0e"]
+[ext_resource type="Texture2D" uid="uid://c7vjvcv8ecwct" path="res://assets/Reciclagem/Clouds/cloud3.png" id="4_70xqy"]
+[ext_resource type="Texture2D" uid="uid://do3jga8v477wt" path="res://assets/Reciclagem/Clouds/cloud4.png" id="5_fok7h"]
+[ext_resource type="Texture2D" uid="uid://cbwtrwasdsjsj" path="res://assets/Reciclagem/Clouds/cloud5.png" id="6_5ta48"]
+[ext_resource type="Texture2D" uid="uid://dsafe40foy8bx" path="res://assets/Reciclagem/Clouds/cloud6.png" id="7_ik6lh"]
+
+[node name="Cloud" type="Node2D"]
+script = ExtResource("1_d5yci")
+
+[node name="Storage" type="Node2D" parent="."]
+visible = false
+
+[node name="cloud1" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("2_knfvq")
+
+[node name="cloud2" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("3_mmw0e")
+
+[node name="cloud3" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("4_70xqy")
+
+[node name="cloud4" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("5_fok7h")
+
+[node name="cloud5" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("6_5ta48")
+
+[node name="cloud6" type="Sprite2D" parent="Storage"]
+visible = false
+texture = ExtResource("7_ik6lh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
