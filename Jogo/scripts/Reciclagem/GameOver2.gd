@@ -7,7 +7,8 @@ var Singleton = Global.get_instance()
 func _ready() -> void:
 	$Fim_de_jogo.play()
 	#text = "Max Score: " + str(Global.max_score)
-	get_node("ColorRect/VBoxContainer/Score").text = "Max Score: " + str(Global.max_score_reciclagem)
+	get_node("ColorRect/VBoxContainer/Score").text = "Você perdeu
+	Max Score: " + str(Global.max_score_reciclagem)
 	pass
 
 func _on_jogar_novamente_pressed() -> void:
