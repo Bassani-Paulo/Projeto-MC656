@@ -11,14 +11,13 @@ config_version=5
 [application]
 
 config/name="Projeto MC656"
-run/main_scene="res://scenes/SceneManager.tscn"
+run/main_scene="res://scenes/ui/Main menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://scripts/Tartaruga/Global.gd"
-SceneManager="*res://scripts/SceneManager.gd"
 
 [display]
 

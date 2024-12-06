@@ -1,7 +1,7 @@
 extends Control
 
 var path_main_menu = "res://scenes/ui/Main menu.tscn"
-var Singleton = Global.get_instance()
+var path_tartaruga = "res://scenes/Tartaruga/Jogo.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,9 +11,9 @@ func _ready() -> void:
 	pass
 
 func _on_jogar_novamente_pressed() -> void:
-	Singleton.go_back()
+	get_tree().change_scene_to_file(path_tartaruga)
 	pass
 
 func _on_voltar_ao_menu_pressed() -> void:
-	Singleton.change_scene(path_main_menu)
+	get_tree().change_scene_to_file(path_main_menu)
 	pass

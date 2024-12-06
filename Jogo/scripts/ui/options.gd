@@ -1,7 +1,5 @@
 extends Control
 
-var Singleton = Global.get_instance()
-
 func _on_return_pressed() -> void:
-	Singleton.go_back()
+	get_tree().change_scene_to_file("res://scenes/ui/Main menu.tscn")
 	pass
