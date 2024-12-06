@@ -29,8 +29,6 @@ func schedule_next_spawn():
 	var adjusted_max = max_spawn_interval / speed_to_modifier[speed_state]
 	var spawn_time = randf_range(adjusted_min, adjusted_max)
 	
-	print(adjusted_min, " ", adjusted_max, " ", spawn_time)
-	
 	$Timer.wait_time = spawn_time
 
 
