@@ -4,6 +4,9 @@ extends Node2D
 var Singleton = Global.get_instance()
 var dy = 5
 
+var lixo_path = "res://scenes/Reciclagem/Lixo.tscn"
+var cloud_path = "res://scenes/Reciclagem/Cloud.tscn"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Erros_label.position.y = 0
@@ -25,11 +28,13 @@ func ajusta_posicao(label : Label, reference : Node2D) -> void:
 	pass
 
 func spawn_lixo() -> void:
-	Singleton.add_scene("res://scenes/Reciclagem/Lixo.tscn", self)
+	var lixo = Hazard.new(lixo_path, self, Vector2(0, 0), 0) # 0 para indicar valor nulo
+	Singleton.add_hazard(lixo)
 	pass
 	
 func spawn_cloud() -> void:
-	Singleton.add_scene("res://scenes/Reciclagem/Cloud.tscn", self)
+	var cloud = Hazard.new(cloud_path, self, Vector2(0, 0), 0) # 0 para indicar valor nulo
+	Singleton.add_hazard(cloud)
 	pass
 
 func check_game_over() -> void:

@@ -4,7 +4,8 @@ var Singleton = Global.get_instance()
 
 func _ready() -> void:
 	get_node("game_over").playing = true
-	get_node("CanvasLayer2/CenterContainer/VBoxContainer/Score").text = "Max Score: " + str(Global.max_score_abelha)
+	get_node("CanvasLayer2/CenterContainer/VBoxContainer/Score_Label").text = "Você perdeu
+	Max Score: " + str(Global.max_score_abelha)
 	pass
   
 func _on_retry_pressed() -> void:

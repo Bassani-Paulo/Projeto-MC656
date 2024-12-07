@@ -74,11 +74,13 @@ func update_charge_label():
 	$Charge_label.text = "Carga do casco: " + str(int(get_node("Player").shell_charge*10)) + "%"
 
 func spawn_canudo() -> void:
-	Singleton.add_scene(path_canudo, self)
+	var canudo = Hazard.new(path_canudo, self, Vector2(0, 0), 0) # 0 para indicar valor nulo
+	Singleton.add_hazard(canudo)
 	pass
 	
 func spawn_alga() -> void:
-	Singleton.add_scene(path_alga, self)
+	var alga = Hazard.new(path_alga, self, Vector2(0, 0), 0) # 0 para indicar valor nulo
+	Singleton.add_hazard(alga)
 	pass
 
 func ajusta_posicao(label : Label, reference : Object) -> void:
