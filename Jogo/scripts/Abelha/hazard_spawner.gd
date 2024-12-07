@@ -22,7 +22,8 @@ func _ready():
 func spawn_obstacle():
 	var random_scene = obstacle_scenes[randi() % obstacle_scenes.size()]
 	var speed = speed_to_modifier[speed_state]
-	Singleton.add_scene_custom(random_scene, self.get_parent(), Vector2(2000, 0), speed)
+	var obstacle = Hazard.new(random_scene, self, Vector2(2000, 0), speed)
+	Singleton.add_hazard(obstacle)
 
 func schedule_next_spawn():
 	var adjusted_min = min_spawn_interval / speed_to_modifier[speed_state]

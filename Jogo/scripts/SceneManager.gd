@@ -35,29 +35,19 @@ func change_scene_deferred(scene_path: String):
 		current_scene = scene_path
 
 # Método para instanciar outra cena sobre uma cena existente
-func add_scene(scene_path: String, background_scene: Node):
+func add_hazard(obstacle: Hazard):
 	# Se existe a cena de "background"
-	if background_scene:
-		call_deferred("add_scene_deferred", scene_path, background_scene)
+	if obstacle.background_scene:
+		call_deferred("add_hazard_deferred", obstacle)
 
-func add_scene_deferred(scene_path: String, background_scene: Node):
-	instanced_scene = load(scene_path).instantiate()
-	background_scene.add_child(instanced_scene)
-	
-# Método para instanciar outra cena sobre uma cena existente, settando sua posição já
-func add_scene_custom(scene_path: String, background_scene: Node, position: Vector2, speed: int):
-	# Se existe a cena de "background"
-	if background_scene:
-		call_deferred("add_scene_deferred_custom", scene_path, background_scene, position, speed)
-
-func add_scene_deferred_custom(scene_path: String, background_scene: Node, position: Vector2, speed: int):
-	if scene_path:
-		instanced_scene = load(scene_path).instantiate()
+func add_hazard_deferred(obstacle: Hazard):
+	if obstacle.scene_path:
+		instanced_scene = load(obstacle.scene_path).instantiate()
 		if instanced_scene.get("position"):
-			instanced_scene.position = position
+			instanced_scene.position = obstacle.position
 		if instanced_scene.get("speed_modifier"):
-			instanced_scene.speed_modifier = speed
-		background_scene.add_child(instanced_scene)
+			instanced_scene.speed_modifier = obstacle.speed
+		obstacle.background_scene.add_child(instanced_scene)
 
 # Método para voltar à cena anterior
 func go_back():
